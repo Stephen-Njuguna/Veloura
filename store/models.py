@@ -36,7 +36,7 @@ class Product(models.Model):
     title = models.CharField(max_length=100, blank=False)
     description = models.TextField(blank=True)
     price = models.DecimalField(decimal_places=2, max_digits=10)
-    image = models.ImageField(upload_to='products/', blank=False)
+    image = models.ImageField(upload_to='products/', blank=True)
     status = models.CharField(max_length=30, choices=ProductChoices.choices, default=ProductChoices.AVAILABLE)
     added_at = models.DateField(auto_now_add=True)
 
@@ -47,7 +47,7 @@ class Product(models.Model):
 #Store model
 
 class Store(models.Model):
-    Vendor = models.ForeignKey(Vendor, on_delete=models.CASCADE)
+    vendor = models.ForeignKey(Vendor, on_delete=models.CASCADE)
     store_name = models.SlugField(unique=True,blank=False)
     banner = models.ImageField(upload_to='banners/', blank=True)
     joined_on = models.DateField(auto_now_add=True)
